@@ -28,7 +28,7 @@ def flights_list(request):
     
     if request.method=='POST':
         schedule_data = JSONParser().parse(request)
-        schedules_serializer = ScheduleSeralizer(data=schedule_data)
+        schedules_serializer = ScheduleSerializer(data=schedule_data)
         if schedules_serializer.is_valid():
             schedules_serializer.save()
             return JsonResponse(schedule_data.data, status=status.HTTP_201_CREATED)
@@ -51,7 +51,7 @@ def flight_detail(request, pk):
 
     if request.method == 'PUT':
         schedule_data = JSONParser().parse(request)
-        schedule_serializer = ScheduleSeralizer(schedule, data=schedule_data)
+        schedule_serializer = ScheduleSerializer(schedule, data=schedule_data)
         if schedule_serializer.is_valid():
             schedule_serializer.save()
             return JsonResponse(schedule_serializer.data)
